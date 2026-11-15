@@ -1,7 +1,7 @@
 # Level 1 — Implementation Tracker
 
 **Project:** Cybersecurity Foundation (20 sessions, 90 minutes each, 30 hours, 7 sections, 10 major labs)
-**Current phase:** Phase 4 — Content migration & sessions (Batch 3 in progress; Sessions 1–19 + Labs 1–9 done)
+**Current phase:** Phase 4 — Content migration & sessions (Batch 3 complete; Sessions 1–20 + Labs 1–10 done)
 **Phase status:** IN PROGRESS
 **Last updated:** 2026-11-15
 
@@ -20,7 +20,7 @@
 | 1 — Curriculum audit & gap analysis | COMPLETED | 20-session audit, topic mapping, lab mapping, boundary check in `PHASE_1_CURRICULUM_AUDIT.md` |
 | 2 — Blueprint & implementation plan | COMPLETED — APPROVED | 7 sections, 20 sessions, 10 labs, migration plan in `PHASE_2_CURRICULUM_BLUEPRINT.md`; decisions D-1..D-4 approved (all recommended options) |
 | 3 — Foundation & shared components | COMPLETED | Schema, rendering, assessment, labs, progress migration, templates |
-| 4 — Content migration & sessions | IN PROGRESS | Sessions 1–19 + Labs 1–9 done (Batch 3); Session 20 + Lab 10 remain |
+| 4 — Content migration & sessions | COMPLETE | Sessions 1–20 + Labs 1–10 done (Batch 3 complete) |
 | 5 — Labs & assessment integration | IN PROGRESS | Major labs 1–9 integrated with instructor guides; 1 major lab remains (10) |
 | 6 — Consistency & technical validation | NOT STARTED | Full educational and technical audit |
 | 7 — Final review & delivery | NOT STARTED | Final report and checklist |
@@ -67,7 +67,7 @@
 | Lab 5 | Network Discovery & Firewall Rules | COMPLETE | Major lab `lab-05` in Session 9; instructor guide in `docs/instructor/LAB_05_FIREWALL_INSTRUCTOR_GUIDE.md` |
 | Lab 6 | Web Server, Document Root & HTTP | COMPLETE | Major lab `lab-06` in Session 10; instructor guide in `docs/instructor/LAB_06_WEBSERVER_INSTRUCTOR_GUIDE.md` |
 
-## Batch 3 progress (Sessions 11–20 + Labs 7–10) — IN PROGRESS
+## Batch 3 progress (Sessions 11–20 + Labs 7–10) — COMPLETE
 
 | Session | Topic | Status | Notes |
 |---|---|---|---|
@@ -80,7 +80,7 @@
 | 17 | Digital Forensics Essentials | ✅ COMPLETE | v2 `chapters/s17.ts` authored (forensics expanded from old S17); structured lab with `hash` tool (no major lab); wired into `SESSIONS`; 193 tests pass |
 | 18 | Risk Management & Privacy | ✅ COMPLETE | v2 `chapters/s18.ts` authored (D-4 merge: old S15 risk + old S19 privacy); structured lab with `match` tool (ethical decision drill); wired into `SESSIONS`; legacy Cloud renumbered to S19; 193 tests pass |
 | 19 | Cloud Security Basics (Cloud, Mobile & IoT) | ✅ COMPLETE | v2 `chapters/s19.ts` authored (from old S18 Cloud); structured lab with `match` tool (shared responsibility drill); wired into `SESSIONS`; 193 tests pass |
-| 20 | Career Paths & Capstone Review | NOT STARTED | v1 → v2 conversion; hosts part of major lab `lab-10` (`risk` tool) |
+| 20 | Career Paths & Capstone Review | ✅ COMPLETE | v2 `chapters/s20.ts` authored (from old S20 capstone); major lab `lab-10` (`risk` tool); wired into `SESSIONS`; 193 tests pass |
 
 ## Decisions log (Phase 2 checkpoint)
 
@@ -230,7 +230,7 @@ No screenshots or tool output were fabricated. Sessions 3–5 use fictional mess
 
 ## Next planned action
 
-Continue Phase 4 Batch 3 with Sessions 11–20: Web Application Security (S11), Cryptography + Access Control (S12, D-4 merge), Identity & Access Management (S13, D-4 merge), Vulnerability Management (S14), Security Monitoring & SIEM (S15), Incident Response (S16), Digital Forensics (S17), Risk + Privacy (S18, D-4 merge), Cloud Security (S19), and Career Paths & Capstone (S20), plus major labs 7–10. Preserve session IDs and the v2 chapter contract, and add major labs with instructor guides under `docs/instructor/`.
+**Phase 4 Batch 3 (Sessions 11–20 + Labs 7–10) is COMPLETE.** All v2 chapters authored, wired, validated, and tracked: S11 Web App Security, S12 Cryptography, S13 IAM, S14 Vulnerability Management, S15 Security Monitoring & SIEM, S16 Incident Response, S17 Digital Forensics, S18 Risk + Privacy, S19 Cloud/Mobile/IoT, S20 Career Paths & Capstone. Remaining work: write instructor guides for major labs 7–10 under `docs/instructor/` (Web App `sqli`, Crypto/IAM `cipher`+`rbac`, Vuln/SIEM `risk`+`logs`, Capstone `risk`), then run a final full re-validation and promote Phase 4 to COMPLETE. Preserve session IDs (1–20 in order) and the v2 chapter contract.
 
 ## Phase 0–2 deliverables produced
 
