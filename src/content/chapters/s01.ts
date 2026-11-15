@@ -667,7 +667,6 @@ export const s01: Session = {
       { criterion: l("Residual risk, recommendation and clarity", "الخطر المتبقي والتوصية والوضوح"), weight: 15 },
     ],
   },
-  majorLabId: "lab-01",
   quiz: [
     {
       q: l("Which statement best defines cybersecurity?", "أي عبارة تعرّف الأمن السيبراني بشكل أفضل؟"),
