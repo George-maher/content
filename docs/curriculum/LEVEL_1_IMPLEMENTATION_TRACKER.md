@@ -2,7 +2,7 @@
 
 **Project:** Cybersecurity Foundation (20 sessions, 90 minutes each, 30 hours, 7 sections, 10 major labs)
 **Current phase:** Phase 4 — Content migration & sessions (Batch 3 complete; Sessions 1–20 + Labs 1–10 done)
-**Phase status:** IN PROGRESS
+**Phase status:** COMPLETE
 **Last updated:** 2026-11-15
 
 ## Baseline
@@ -21,7 +21,7 @@
 | 2 — Blueprint & implementation plan | COMPLETED — APPROVED | 7 sections, 20 sessions, 10 labs, migration plan in `PHASE_2_CURRICULUM_BLUEPRINT.md`; decisions D-1..D-4 approved (all recommended options) |
 | 3 — Foundation & shared components | COMPLETED | Schema, rendering, assessment, labs, progress migration, templates |
 | 4 — Content migration & sessions | COMPLETE | Sessions 1–20 + Labs 1–10 done (Batch 3 complete) |
-| 5 — Labs & assessment integration | IN PROGRESS | Major labs 1–9 integrated with instructor guides; 1 major lab remains (10) |
+| 5 — Labs & assessment integration | COMPLETE | Major labs 1–10 integrated with instructor guides (Labs 1–10 guides in `docs/instructor/`) |
 | 6 — Consistency & technical validation | NOT STARTED | Full educational and technical audit |
 | 7 — Final review & delivery | NOT STARTED | Final report and checklist |
 
@@ -230,7 +230,7 @@ No screenshots or tool output were fabricated. Sessions 3–5 use fictional mess
 
 ## Next planned action
 
-**Phase 4 Batch 3 (Sessions 11–20 + Labs 7–10) is COMPLETE.** All v2 chapters authored, wired, validated, and tracked: S11 Web App Security, S12 Cryptography, S13 IAM, S14 Vulnerability Management, S15 Security Monitoring & SIEM, S16 Incident Response, S17 Digital Forensics, S18 Risk + Privacy, S19 Cloud/Mobile/IoT, S20 Career Paths & Capstone. Remaining work: write instructor guides for major labs 7–10 under `docs/instructor/` (Web App `sqli`, Crypto/IAM `cipher`+`rbac`, Vuln/SIEM `risk`+`logs`, Capstone `risk`), then run a final full re-validation and promote Phase 4 to COMPLETE. Preserve session IDs (1–20 in order) and the v2 chapter contract.
+**Phase 4 Batch 3 (Sessions 11–20 + Labs 7–10) and Phase 5 (Labs & assessment integration) are COMPLETE.** All 20 v2 chapters authored, wired, validated, and tracked (S11–S20), and instructor guides for major labs 1–10 are all present under `docs/instructor/` (Labs 7–10 authored this pass: Web App `sqli`, Crypto/IAM `cipher`+`rbac`, Vuln/SIEM `risk`+`logs`, IR/Capstone `order`+`risk`). Full re-validation PASS: typecheck, lint, 193 tests, 0 vulnerabilities. **Next:** Phase 6 — Consistency & technical validation: run the full educational and technical audit (bilingual quality sweep, contract checks across all 20 sessions, bundle-size check), then Phase 7 — final review & delivery report. Session IDs 1–20 in order and the v2 chapter contract are preserved.
 
 ## Phase 0–2 deliverables produced
 
