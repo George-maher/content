@@ -1,7 +1,7 @@
 # Level 1 — Implementation Tracker
 
 **Project:** Cybersecurity Foundation (20 sessions, 90 minutes each, 30 hours, 7 sections, 10 major labs)
-**Current phase:** Phase 4 — Content migration & sessions (Batch 3 in progress; Sessions 1–15 + Labs 1–9 done)
+**Current phase:** Phase 4 — Content migration & sessions (Batch 3 in progress; Sessions 1–16 + Labs 1–9 done)
 **Phase status:** IN PROGRESS
 **Last updated:** 2026-11-15
 
@@ -20,7 +20,7 @@
 | 1 — Curriculum audit & gap analysis | COMPLETED | 20-session audit, topic mapping, lab mapping, boundary check in `PHASE_1_CURRICULUM_AUDIT.md` |
 | 2 — Blueprint & implementation plan | COMPLETED — APPROVED | 7 sections, 20 sessions, 10 labs, migration plan in `PHASE_2_CURRICULUM_BLUEPRINT.md`; decisions D-1..D-4 approved (all recommended options) |
 | 3 — Foundation & shared components | COMPLETED | Schema, rendering, assessment, labs, progress migration, templates |
-| 4 — Content migration & sessions | IN PROGRESS | Sessions 1–15 + Labs 1–9 done (Batch 3); Sessions 16–20 + Lab 10 remain |
+| 4 — Content migration & sessions | IN PROGRESS | Sessions 1–16 + Labs 1–9 done (Batch 3); Sessions 17–20 + Lab 10 remain |
 | 5 — Labs & assessment integration | IN PROGRESS | Major labs 1–9 integrated with instructor guides; 1 major lab remains (10) |
 | 6 — Consistency & technical validation | NOT STARTED | Full educational and technical audit |
 | 7 — Final review & delivery | NOT STARTED | Final report and checklist |
@@ -76,7 +76,7 @@
 | 13 | Identity & Access Management (IAM) | ✅ COMPLETE | v2 `chapters/s13.ts` authored (D-4 merge: old S11 auth + old S12 IAM → S13); hosts part of major lab `lab-08` (`rbac` tool); wired into `SESSIONS`; 193 tests pass |
 | 14 | Vulnerability Management | ✅ COMPLETE | v2 `chapters/s14.ts` authored; hosts part of major lab `lab-09` (`risk` tool); wired into `SESSIONS`; 193 tests pass |
 | 15 | Security Monitoring & SIEM Basics | ✅ COMPLETE | v2 `chapters/s15.ts` authored (from old S16 SIEM/Logging/SOC); hosts part of major lab `lab-09` (`logs` tool); wired into `SESSIONS`; 193 tests pass |
-| 16 | Incident Response (IR) Foundations | NOT STARTED | v1 → v2 conversion; hosts part of major lab `lab-10` (`order` tool) |
+| 16 | Incident Response (IR) Foundations | ✅ COMPLETE | v2 `chapters/s16.ts` authored (from old S17 IR content); hosts part of major lab `lab-10` (`order` tool); wired into `SESSIONS`; 193 tests pass |
 | 17 | Digital Forensics Essentials | NOT STARTED | v1 → v2 conversion |
 | 18 | Risk Management & Privacy | NOT STARTED | MERGE (D-4: old S15 risk + old S19 privacy → S18) |
 | 19 | Cloud Security Basics | NOT STARTED | v1 → v2 conversion |

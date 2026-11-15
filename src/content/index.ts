@@ -14,7 +14,7 @@ import { s12 } from "./chapters/s12";
 import { s13 } from "./chapters/s13";
 import { s14 } from "./chapters/s14";
 import { s15 } from "./chapters/s15";
-import { s16 } from "./s15_16";
+import { s16 } from "./chapters/s16";
 import { s17, s18 } from "./s17_18";
 import { s19, s20 } from "./s19_20";
 
