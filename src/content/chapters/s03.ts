@@ -532,8 +532,8 @@ export const s03: Session = {
   ],
   lab: {
     title: l(
-      "Lab 3 — Triage six suspicious incidents",
-      "المختبر 3 — فرز ستة حوادث مشبوهة",
+      "Lab 1 — Threat Identification & Phishing Analysis",
+      "المختبر 1 — تحديد التهديدات وتحليل التصيّد",
     ),
     scenario: l(
       "You are a junior analyst at a regional clinic. Six reports arrive during one shift: a payment request, a credential page, a phone call, encrypted files, stolen sessions and a fast-spreading infection. Classify each report and choose the first response that protects patients and systems.",
@@ -679,6 +679,7 @@ export const s03: Session = {
       ],
     },
   },
+  majorLabId: "lab-01",
   quiz: [
     {
       q: l("Which combination is the strongest sign of a phishing email?", "أي مزيج هو أقوى علامة على رسالة تصيّد؟"),

@@ -366,3 +366,124 @@ export function OrderTool({ data }: { data: OrderData }) {
     </Box>
   );
 }
+
+/* ---------- Web server / document root simulator ---------- */
+// A small simulated web server: a public document root with a private folder
+// outside it. Students request paths and observe status codes, toggle directory
+// listing, and learn why traversal is rejected and how to harden the server.
+type WsNode = { kind: "file" | "dir"; children?: Record<string, WsNode> };
+
+const PUBLIC_TREE: WsNode = {
+  kind: "dir",
+  children: {
+    "index.html": { kind: "file" },
+    "about.html": { kind: "file" },
+    docs: { kind: "dir", children: { "page.html": { kind: "file" } } },
+  },
+};
+// Files that exist on disk but sit OUTSIDE the document root (private).
+const PRIVATE_FILES = ["/private/secrets.txt", "/private/config.bak"];
+
+export function WebserverTool() {
+  const { tr } = useLang();
+  const [listing, setListing] = useState(true);
+  const [req, setReq] = useState("/");
+  const [log, setLog] = useState<{ path: string; code: number; msg: string }[]>([]);
+
+  // Resolve a requested path against the public tree only.
+  const resolve = (path: string): "file" | "dir" | "missing" => {
+    const norm = path.endsWith("/") ? path.slice(0, -1) : path;
+    const segs = norm.split("/").filter(Boolean);
+    // Directory traversal: any ".." component is rejected outright.
+    if (segs.includes("..")) return "missing";
+    let node = PUBLIC_TREE;
+    for (const s of segs) {
+      if (!node.children) return "missing";
+      node = node.children[s];
+      if (!node) return "missing";
+    }
+    return node.kind;
+  };
+
+  const send = (path: string) => {
+    const clean = path.split("?")[0];
+    const hasTraversal = clean.split("/").some((s) => s === "..");
+    let code = 404;
+    let msg = "";
+    if (hasTraversal) {
+      code = 403;
+      msg = tr("Rejected – path escapes the document root (directory traversal blocked).", "مرفوض – المسار يخرج عن مستوى الجذر (العبور بين الدلائل محظور).");
+    } else {
+      const r = resolve(clean);
+      if (r === "file") { code = 200; msg = tr("OK – the requested file is served from the document root.", "نجح – يُقدم الملف المطلوب من مستوى الجذر."); }
+      else if (r === "dir") {
+        if (listing) { code = 200; msg = tr("Directory listing – a file index is shown.", "قائمة دلائل – تُعرض قائمة ملفات."); }
+        else { code = 403; msg = tr("Forbidden – directory listing is disabled.", "محظور – قائمة الدلائل معطّلة."); }
+      } else {
+        // A private file that exists on disk but is outside the doc root.
+        if (PRIVATE_FILES.includes(clean)) {
+          code = 404;
+          msg = tr("Not found – this file is outside the document root and is never served.", "غير موجود – هذا الملف خارج مستوى الجذر ولا يُقدم أبدًا.");
+        } else {
+          code = 404;
+          msg = tr("Not found – the resource does not exist under the document root.", "غير موجود – المورد غير موجود تحت مستوى الجذر.");
+        }
+      }
+    }
+    setLog((l) => [{ path: clean, code, msg }, ...l].slice(0, 8));
+  };
+
+  const presets = ["/", "/index.html", "/docs/page.html", "/private/secrets.txt", "/missing.html", "/../../etc/passwd"];
+  const hardened = !listing;
+
+  return (
+    <Box title={tr("Web server simulator – document root & HTTP statuses", "محاكي خادم الويب – مستوى الجذر ورموز حالة HTTP")}>
+      <p className="mb-3 text-sm text-slate-400">{tr("Request a path on a simulated web server. The document root is the public folder; the private folder sits outside it. Watch the status code and the explanation.", "اطلب مسارًا على خادم ويب محاكٍ. مستوى الجذر هو المجلد العام؛ والمجلد الخاص خارجوه. وراقب رمز الحالة والشرح.")}</p>
+
+      {/* File tree */}
+      <div className="mb-3 rounded-lg border border-slate-800 bg-slate-900/60 p-3" dir="ltr">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">{tr("Document root (served)", "مستوى الجذر (يُقدم)")}</p>
+        <pre className="font-mono text-xs text-emerald-300">{`/  (document root)
+├── index.html
+├── about.html
+└── docs/
+    └── page.html`}</pre>
+        <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-400">{tr("Outside the root (never served)", "خارج الجذر (لا يُقدم أبدًا)")}</p>
+        <pre className="font-mono text-xs text-red-300">{`/private/secrets.txt
+/private/config.bak`}</pre>
+      </div>
+
+      {/* Directory listing toggle */}
+      <div className="mb-3 flex items-center gap-2">
+        <Btn active={listing} onClick={() => setListing(true)}>{tr("Enable directory listing", "تفعيل قائمة الدلائل")}</Btn>
+        <Btn active={!listing} onClick={() => setListing(false)}>{tr("Disable directory listing", "تعطيل قائمة الدلائل")}</Btn>
+        {hardened && <span className="text-sm font-semibold text-emerald-400">✓ {tr("Hardened", "مُقوّى")}</span>}
+      </div>
+
+      {/* Request box */}
+      <div className="mb-3 flex flex-wrap gap-2" dir="ltr">
+        <input className={`${inp} w-56 font-mono`} value={req} onChange={(e) => setReq(e.target.value)} aria-label={tr("Request path", "مسار الطلب")} onKeyDown={(e) => { if (e.key === "Enter") send(req); }} />
+        <Btn onClick={() => send(req)}>{tr("Send request", "إرسال الطلب")}</Btn>
+      </div>
+      <div className="mb-4 flex flex-wrap gap-2" dir="ltr">
+        {presets.map((p) => <Btn key={p} onClick={() => { setReq(p); send(p); }} label={tr("Request this path", "طلب هذا المسار")}>{p}</Btn>)}
+      </div>
+
+      {/* Log */}
+      {log.length > 0 ? (
+        <div className="space-y-1.5">
+          <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">{tr("Response log", "سجل الاستجابات")}</p>
+          {log.map((r, i) => (
+            <div key={i} className={`rounded-lg border px-3 py-2 text-xs ${r.code === 200 ? "border-emerald-600/60 bg-emerald-500/10" : r.code === 403 ? "border-red-600/60 bg-red-500/10" : "border-amber-600/60 bg-amber-500/10"}`} dir="ltr">
+              <span className="font-mono font-bold text-slate-100">{r.code}</span> <span className="font-mono text-cyan-300">{r.path}</span> — <span className="text-slate-300">{r.msg}</span>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="text-sm text-slate-500">{tr("Send a request to see the response and status code.", "أرسل طلبًا لترى الاستجابة ورمز الحالة.")}</p>
+      )}
+
+      <p className="mt-3 text-xs text-slate-400">{tr("Safety: this is a simulator only. Never configure, scan or test a real web server without authorization.", "السلامة: هذا محاكٍ فقط. لا تُهيئ أو تمسح أو تختبر خادم ويب حقيقيًا دون تصريح.")}</p>
+    </Box>
+  );
+}

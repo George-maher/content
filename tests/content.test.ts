@@ -163,13 +163,33 @@ describe.each(SESSIONS.map((s) => [s.id, s] as const))("session %i", (_id, s) =>
 });
 
 describe("major lab identity", () => {
-  it("uses unique, well-formed major lab ids and links the first two labs", () => {
+  it("uses unique, well-formed major lab ids and links labs to the correct sessions", () => {
     const labs = SESSIONS.filter((s) => s.majorLabId);
     const ids = labs.map((s) => s.majorLabId!);
-    expect(new Set(ids).size).toBe(ids.length);
     for (const id of ids) expect(id).toMatch(/^lab-\d{2}$/);
-    expect(SESSIONS.find((s) => s.majorLabId === "lab-01")?.id).toBe(1);
-    expect(SESSIONS.find((s) => s.majorLabId === "lab-02")?.id).toBe(2);
+    // Blueprint labs 8-10 are split across two sessions each (D-4 merges), so a
+    // lab id may appear on at most two sessions.
+    const counts = ids.reduce<Record<string, number>>((acc, id) => {
+      acc[id] = (acc[id] || 0) + 1;
+      return acc;
+    }, {});
+    for (const n of Object.values(counts)) expect(n).toBeLessThanOrEqual(2);
+    // Lab 1 = threat identification & phishing analysis (Session 3)
+    expect(SESSIONS.find((s) => s.majorLabId === "lab-01")?.id).toBe(3);
+    // Lab 2 = Linux command line & permissions (Session 5)
+    expect(SESSIONS.find((s) => s.majorLabId === "lab-02")?.id).toBe(5);
+    // Lab 3 = Windows administration & Active Directory (Session 6)
+    expect(SESSIONS.find((s) => s.majorLabId === "lab-03")?.id).toBe(6);
+    // Lab 4 = IP addressing & subnetting (Session 7)
+    expect(SESSIONS.find((s) => s.majorLabId === "lab-04")?.id).toBe(7);
+    // Lab 5 = network discovery & firewall rules (Session 9)
+    expect(SESSIONS.find((s) => s.majorLabId === "lab-05")?.id).toBe(9);
+    // Lab 6 = web server, document root & HTTP (Session 10)
+    expect(SESSIONS.find((s) => s.majorLabId === "lab-06")?.id).toBe(10);
+    // Lab 7 = web application security & SQL injection (Session 11)
+    expect(SESSIONS.find((s) => s.majorLabId === "lab-07")?.id).toBe(11);
+    // Lab 8 = cryptography & access control, split across Sessions 12 and 13
+    expect(SESSIONS.filter((s) => s.majorLabId === "lab-08").map((s) => s.id).sort((a, b) => a - b)).toEqual([12, 13]);
   });
 });
 

@@ -43,7 +43,8 @@ export type ToolId =
   | "risk"
   | "logs"
   | "match"
-  | "order";
+  | "order"
+  | "webserver";
 
 export interface MatchData {
   prompt: L;

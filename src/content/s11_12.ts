@@ -127,7 +127,7 @@ export const s11: Session = {
 
 export const s12: Session = {
   id: 12,
-  phase: 3,
+  phase: 4,
   minutes: 60,
   title: l("Access Control and Identity & Access Management (IAM)", "التحكم بالوصول وإدارة الهوية والوصول (IAM)"),
   summary: l(

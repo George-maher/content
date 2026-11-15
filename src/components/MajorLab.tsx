@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import type { Lab, Session } from "../content/types";
 import { useLang, useProgress } from "../store";
 import { S } from "../strings";
-import { CiaTool, CidrTool, FirewallTool, MatchTool, OrderTool, PermTool, PhishTool, PortTool } from "./LabToolsA";
+import { CiaTool, CidrTool, FirewallTool, MatchTool, OrderTool, PermTool, PhishTool, PortTool, WebserverTool } from "./LabToolsA";
 import { CipherTool, HashTool, LogTool, PasswordTool, RbacTool, RiskTool, SqliTool } from "./LabToolsB";
 import { Check } from "./ui";
 
@@ -21,6 +21,7 @@ function LabTool({ lab }: { lab: Lab }) {
     case "sqli": return <SqliTool />;
     case "risk": return <RiskTool />;
     case "logs": return <LogTool />;
+    case "webserver": return <WebserverTool />;
     case "match": return lab.match ? <MatchTool data={lab.match} /> : null;
     case "order": return lab.order ? <OrderTool data={lab.order} /> : null;
     default: return null;
