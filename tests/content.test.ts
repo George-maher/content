@@ -162,6 +162,17 @@ describe.each(SESSIONS.map((s) => [s.id, s] as const))("session %i", (_id, s) =>
   });
 });
 
+describe("major lab identity", () => {
+  it("uses unique, well-formed major lab ids and links the first two labs", () => {
+    const labs = SESSIONS.filter((s) => s.majorLabId);
+    const ids = labs.map((s) => s.majorLabId!);
+    expect(new Set(ids).size).toBe(ids.length);
+    for (const id of ids) expect(id).toMatch(/^lab-\d{2}$/);
+    expect(SESSIONS.find((s) => s.majorLabId === "lab-01")?.id).toBe(1);
+    expect(SESSIONS.find((s) => s.majorLabId === "lab-02")?.id).toBe(2);
+  });
+});
+
 describe("Python is excluded from the whole source tree", () => {
   const files: string[] = [];
   const walk = (d: string) => {

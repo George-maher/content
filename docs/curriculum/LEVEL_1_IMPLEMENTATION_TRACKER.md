@@ -20,8 +20,8 @@
 | 1 — Curriculum audit & gap analysis | COMPLETED | 20-session audit, topic mapping, accuracy review |
 | 2 — Blueprint & implementation plan | COMPLETED | 7 sections, 20 sessions, 10 labs, migration plan, approval requested |
 | 3 — Foundation & shared components | COMPLETED | Schema, rendering, assessment, labs, progress migration, templates |
-| 4 — Content migration & sessions | IN PROGRESS | Batch 1: Sessions 1–5 complete, Labs 1–2 pending |
-| 5 — Labs & assessment integration | NOT STARTED | Integrated alongside batches |
+| 4 — Content migration & sessions | IN PROGRESS | Batch 1 complete (Sessions 1–5 + Labs 1–2); Batch 2 pending |
+| 5 — Labs & assessment integration | IN PROGRESS | Labs 1–2 integrated with instructor guides; 8 major labs remain |
 | 6 — Consistency & technical validation | NOT STARTED | Full educational and technical audit |
 | 7 — Final review & delivery | NOT STARTED | Final report and checklist |
 
@@ -50,8 +50,8 @@
 | 3 | Malware and Social Engineering: From Phishing to Ransomware | COMPLETE | Full v2 chapter merging old S3 malware and old S4 social engineering; 10 sections, 28 terms, 13 MCQs, structured lab |
 | 4 | Operating System Foundations | COMPLETE | Full v2 chapter split from old S5; 9 sections, 25 terms, 12 MCQs, 6 T/F, 4 classification, 3 scenarios, 2 practical checks; read-only baseline lab with `tool: "logs"`; no major lab |
 | 5 | Files, Accounts and Permissions | COMPLETE | Full v2 chapter; 9 sections, 25 terms, 12 MCQs, 6 T/F, 4 classification, 3 scenarios, 2 practical checks; permission-design lab with `tool: "perm"`; no major lab |
-| Lab 1 | CIA triad and risk register | PENDING | Major lab |
-| Lab 2 | Threat profile and Kill Chain map | PENDING | Major lab |
+| Lab 1 | CIA triad and risk register | COMPLETE | Major lab `lab-01` in Session 1; full guide, sample solution, rubric anchors and safety notes in `docs/instructor/LAB_01_INSTRUCTOR_GUIDE.md` |
+| Lab 2 | Threat profile and Kill Chain map | COMPLETE | Major lab `lab-02` in Session 2; full guide, sample analysis, rubric anchors and uncertainty guidance in `docs/instructor/LAB_02_INSTRUCTOR_GUIDE.md` |
 
 ## Topic migration record
 
@@ -92,6 +92,8 @@
 - `docs/curriculum/LAB_TEMPLATE.md` (new)
 - `docs/curriculum/CONTENT_QUALITY_CHECKLIST.md` (new)
 - `docs/curriculum/BILINGUAL_GUIDELINES.md` (new)
+- `docs/instructor/LAB_01_INSTRUCTOR_GUIDE.md` (new)
+- `docs/instructor/LAB_02_INSTRUCTOR_GUIDE.md` (new)
 
 ## Source verification
 
@@ -133,16 +135,17 @@ No screenshots or tool output were fabricated. Sessions 3–5 use fictional mess
 
 | Command | Result |
 |---|---|
-| `npm run typecheck` | PASS — after Sessions 4–5 |
-| `npm run typecheck:test` | PASS — after Sessions 4–5 and the new render assertions |
+| `npm run typecheck` | PASS — after Batch 1 (Sessions 1–5 + Labs 1–2) |
+| `npm run typecheck:test` | PASS — after Batch 1 and the render/major-lab assertions |
 | `npm run lint` | PASS — 0 errors, 0 warnings |
-| `npm test` | PASS — 192 tests, 9 files |
+| `npm test` | PASS — 193 tests, 9 files |
 | `npm run build` | NOT RUN (writes `dist/`) |
 | `npm run build:web` | NOT RUN (writes `dist-web/`) |
 
 ## Bundle-size notes
 
 - Session content remains compiled TypeScript imported through `src/content/index.ts`.
+- Instructor guides live under `docs/instructor/` and are not imported by `src/`, so they do not enter the student bundle.
 - No bundle-size measurement has been taken after Batch 1; `npm run build` and `npm run build:web` remain unrun because they write to `dist/` and `dist-web/`.
 - Sessions 4 and 5 add substantial prose and assessment data. Measure both builds after Batch 1 is committed and compare with the baseline before deciding whether any content should be lazy-loaded.
 
@@ -152,4 +155,4 @@ No screenshots or tool output were fabricated. Sessions 3–5 use fictional mess
 
 ## Next planned action
 
-Build the two Batch 1 major labs: Lab 1 (CIA triad and risk register) and Lab 2 (threat profile and Kill Chain map), using `docs/curriculum/LAB_TEMPLATE.md`. Keep instructor solutions and rubrics under `docs/instructor/` so they never enter the student bundle. Then run all validation gates and commit Batch 1.
+Begin Batch 2 with Sessions 6–10 (operating-system hardening and administration, then networking foundations and network security). Preserve session IDs and the v2 chapter contract, and add the next designated major labs with instructor guides under `docs/instructor/`.

@@ -582,6 +582,7 @@ export const s02: Session = {
       ],
     },
   },
+  majorLabId: "lab-02",
   quiz: [
     {
       q: l("Which actor is usually the most patient and best resourced?", "أي فاعل يكون عادةً الأكثر صبرًا والأفضل موارد؟"),
