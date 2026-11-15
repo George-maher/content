@@ -129,8 +129,8 @@ export const s17: Session = {
   ],
 };
 
-export const s18: Session = {
-  id: 18,
+export const s19: Session = {
+  id: 19,
   phase: 5,
   minutes: 60,
   title: l("Cloud, Mobile and IoT Security Basics", "أساسيات أمن السحابة والجوال وإنترنت الأشياء"),
