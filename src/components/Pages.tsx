@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { SESSIONS } from "../content";
 import { PHASES } from "../content/types";
-import { EXAM_QUESTIONS, PASS, TOTAL_SESSIONS } from "../constants";
+import { EXAM_QUESTIONS, MAJOR_LABS, PASS, TOTAL_SESSIONS } from "../constants";
 import { buildExam, randomSeed } from "../lib/exam";
 import { href } from "../router";
 import { status, useLang, useProgress } from "../store";
@@ -61,12 +61,20 @@ export function Home() {
   const done = pcts.filter((p) => p === 100).length;
   const nextS = statuses.find((x) => x.st.pct < 100)?.session ?? SESSIONS[0];
   const hours = Math.round(SESSIONS.reduce((a, s) => a + s.minutes, 0) / 60);
-  const quizCount = SESSIONS.reduce((n, s) => n + s.quiz.length, 0);
+  const quizCount = SESSIONS.reduce(
+    (n, s) =>
+      n +
+      s.quiz.length +
+      (s.trueFalse?.length ?? 0) +
+      (s.classification?.reduce((m, q) => m + q.items.length, 0) ?? 0) +
+      (s.scenarios?.length ?? 0),
+    0,
+  );
   const stats: [string, string][] = [
     [String(total), tr("Sessions", "جلسة")],
     [tr(`~${hours}h`, `~${hours} س`), tr("Learning time", "وقت التعلم")],
-    [String(total), tr("Hands-on labs", "مختبرًا عمليًا")],
-    [String(quizCount), tr("Quiz questions", "سؤال اختبار")],
+    [String(MAJOR_LABS), tr("Major labs", "مختبرًا رئيسيًا")],
+    [String(quizCount), tr("Assessment items", "عنصر تقييم")],
   ];
 
   return (

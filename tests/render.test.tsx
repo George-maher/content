@@ -41,6 +41,46 @@ describe.each(["en", "ar"])("render in %s", (lang) => {
     20_000,
   );
 
+  it("renders the full v2 chapter, lab, assessment, homework and references for sessions 1-5", () => {
+    const esc = (v: string) =>
+      v
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#x27;");
+    const v2 = SESSIONS.filter((s) => s.schemaVersion === 2 && s.id <= 5);
+    expect(v2.map((s) => s.id)).toEqual([1, 2, 3, 4, 5]);
+    for (const s of v2) {
+      const out = TABS.map((tab) => html(<SessionView s={s} tab={tab} />)).join("");
+      const pick = (v: { en: string; ar: string }) => esc(lang === "ar" ? v.ar : v.en);
+      expect(out, `S${s.id} overview`).toContain(pick(s.overview!));
+      expect(out, `S${s.id} why it matters`).toContain(pick(s.whyItMatters!));
+      for (const section of s.sections) expect(out, `S${s.id} section ${pick(section.h)}`).toContain(pick(section.h));
+      expect(out, `S${s.id} lab`).toContain(pick(s.lab.title));
+      expect(out, `S${s.id} lab scenario`).toContain(pick(s.lab.scenario));
+      expect(out, `S${s.id} homework`).toContain(pick(s.homework.title));
+      for (const task of s.homework.tasks) expect(out, `S${s.id} homework task`).toContain(pick(task));
+      for (const ref of s.refs) expect(out, `S${s.id} ref ${ref.url}`).toContain(ref.url);
+      for (const term of s.terms) expect(out, `S${s.id} term`).toContain(pick(term.term));
+      const q = s.quiz[0];
+      expect(out, `S${s.id} first question`).toContain(pick(q.q));
+      for (const option of q.options) expect(out, `S${s.id} first option`).toContain(pick(option));
+      expect(out, `S${s.id} true/false`).toContain(pick(s.trueFalse![0].q));
+      expect(out, `S${s.id} classification`).toContain(pick(s.classification![0].prompt));
+      expect(out, `S${s.id} scenario`).toContain(pick(s.scenarios![0].scenario));
+      expect(out, `S${s.id} practical check`).toContain(pick(s.practicalChecks![0].task));
+      expect(out, `S${s.id} instructor demo`).toContain(pick(s.instructorDemo!));
+      expect(out, `S${s.id} common mistakes`).toContain(pick(s.commonMistakes![0]));
+      expect(out, `S${s.id} best practices`).toContain(pick(s.bestPractices![0]));
+      expect(out, `S${s.id} key takeaways`).toContain(pick(s.keyTakeaways![0]));
+      expect(out, `S${s.id} examples`).toContain(pick(s.examples![0]));
+      expect(out, `S${s.id} real-world scenario`).toContain(pick(s.realWorldScenarios![0]));
+      expect(out, `S${s.id} diagram title`).toContain(pick(s.diagram.title));
+      expect(out, `S${s.id} expected results`).toContain(pick(s.expectedResults!));
+    }
+  });
+
   it("renders home, session list, glossary and exam", () => {
     expect(html(<Home />)).toContain("20");
     expect(html(<SessionList />).match(/href="#\/session\//g)?.length).toBe(20);

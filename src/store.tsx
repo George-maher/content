@@ -15,6 +15,7 @@ import {
   clampFlags,
   completion,
   emptyProgress,
+  loadProgress,
   parseProgress,
   type Progress,
   type QuizScore,
@@ -26,6 +27,17 @@ export { PASS } from "./constants";
 
 const LKEY = STORAGE_KEYS.lang;
 const KEY = STORAGE_KEYS.progress;
+const LEGACY_KEY = STORAGE_KEYS.legacyProgress;
+const MIGRATION_KEY = STORAGE_KEYS.migrationNotice;
+
+function initialProgress(): Progress {
+  const loaded = loadProgress(safeGet(KEY), safeGet(LEGACY_KEY));
+  if (loaded.migrated) {
+    safeSet(KEY, JSON.stringify(loaded.progress));
+    safeSet(MIGRATION_KEY, "1");
+  }
+  return loaded.progress;
+}
 
 interface LangCtx {
   lang: Lang;
@@ -36,6 +48,8 @@ interface LangCtx {
 
 interface ProgressCtx {
   progress: Progress;
+  migrationNotice: boolean;
+  dismissMigrationNotice: () => void;
   setRead: (id: number, v: boolean) => void;
   toggleLab: (id: number, i: number, n: number) => void;
   toggleHw: (id: number, i: number, n: number) => void;
@@ -78,9 +92,15 @@ function toggleAt(
   return { ...rec, [id]: arr };
 }
 
+function initialLang(): Lang {
+  // Arabic is the default learning language; an explicit stored choice wins.
+  return safeGet(LKEY) === "en" ? "en" : "ar";
+}
+
 export function Provider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(() => (safeGet(LKEY) === "ar" ? "ar" : "en"));
-  const [progress, setProgress] = useState<Progress>(() => parseProgress(safeGet(KEY)));
+  const [lang, setLangState] = useState<Lang>(initialLang);
+  const [progress, setProgress] = useState<Progress>(initialProgress);
+  const [migrationNotice, setMigrationNotice] = useState(() => safeGet(MIGRATION_KEY) === "1");
   const progressRef = useRef(progress);
 
   useEffect(() => {
@@ -141,7 +161,16 @@ export function Provider({ children }: { children: ReactNode }) {
     setProgress((p) => ({ ...p, exam: bestScore(p.exam, { score, total }) }));
   }, []);
 
-  const reset = useCallback(() => setProgress(emptyProgress()), []);
+  const dismissMigrationNotice = useCallback(() => {
+    safeSet(MIGRATION_KEY, "0");
+    setMigrationNotice(false);
+  }, []);
+
+  const reset = useCallback(() => {
+    safeSet(MIGRATION_KEY, "0");
+    setMigrationNotice(false);
+    setProgress(emptyProgress());
+  }, []);
 
   const resetSession = useCallback((id: number) => {
     setProgress((p) => {
@@ -168,8 +197,30 @@ export function Provider({ children }: { children: ReactNode }) {
   );
 
   const progressValue = useMemo<ProgressCtx>(
-    () => ({ progress, setRead, toggleLab, toggleHw, saveQuiz, saveExam, reset, resetSession }),
-    [progress, setRead, toggleLab, toggleHw, saveQuiz, saveExam, reset, resetSession],
+    () => ({
+      progress,
+      migrationNotice,
+      dismissMigrationNotice,
+      setRead,
+      toggleLab,
+      toggleHw,
+      saveQuiz,
+      saveExam,
+      reset,
+      resetSession,
+    }),
+    [
+      progress,
+      migrationNotice,
+      dismissMigrationNotice,
+      setRead,
+      toggleLab,
+      toggleHw,
+      saveQuiz,
+      saveExam,
+      reset,
+      resetSession,
+    ],
   );
 
   return (

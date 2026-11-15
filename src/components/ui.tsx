@@ -71,3 +71,35 @@ export function ProgressBar({
     </div>
   );
 }
+
+/** Accessible tick-off control used by labs and homework. */
+export function Check({
+  on,
+  onChange,
+  children,
+}: {
+  on: boolean;
+  onChange: () => void;
+  children: ReactNode;
+}) {
+  return (
+    <label
+      className={`flex min-h-11 w-full cursor-pointer items-start gap-3 rounded-lg border px-3 py-2.5 text-start text-sm transition focus-within:ring-2 focus-within:ring-emerald-400 focus-within:ring-offset-2 focus-within:ring-offset-slate-950 ${
+        on
+          ? "border-emerald-500/60 bg-emerald-500/10 text-emerald-100"
+          : "border-slate-700 bg-slate-900/60 text-slate-300 hover:border-slate-500"
+      }`}
+    >
+      <input type="checkbox" checked={on} onChange={onChange} className="sr-only" />
+      <span
+        aria-hidden="true"
+        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border text-xs ${
+          on ? "border-emerald-400 bg-emerald-400 text-slate-950" : "border-slate-500"
+        }`}
+      >
+        {on ? "✓" : ""}
+      </span>
+      <span>{children}</span>
+    </label>
+  );
+}

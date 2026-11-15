@@ -39,6 +39,69 @@ describe("curriculum completeness", () => {
   });
 });
 
+describe("full v2 chapters", () => {
+  const chapters = SESSIONS.filter((s) => s.schemaVersion === 2);
+
+  it("declares the required 24-component structure", () => {
+    for (const s of chapters) {
+      expect(s.overview, `S${s.id} overview`).toBeTruthy();
+      expect(s.whyItMatters, `S${s.id} whyItMatters`).toBeTruthy();
+      expect(s.prerequisites?.length, `S${s.id} prerequisites`).toBeGreaterThan(0);
+      expect(s.agenda?.length, `S${s.id} agenda`).toBeGreaterThan(0);
+      expect(s.introduction, `S${s.id} introduction`).toBeTruthy();
+      expect(s.examples?.length, `S${s.id} examples`).toBeGreaterThan(0);
+      expect(s.realWorldScenarios?.length, `S${s.id} scenarios`).toBeGreaterThan(0);
+      expect(s.instructorDemo, `S${s.id} instructor demo`).toBeTruthy();
+      expect(s.exercises?.length, `S${s.id} exercises`).toBeGreaterThan(0);
+      expect(s.expectedResults, `S${s.id} expected results`).toBeTruthy();
+      expect(s.commonMistakes?.length, `S${s.id} common mistakes`).toBeGreaterThan(0);
+      expect(s.bestPractices?.length, `S${s.id} best practices`).toBeGreaterThan(0);
+      expect(s.keyTakeaways?.length, `S${s.id} key takeaways`).toBeGreaterThan(0);
+      expect(s.homework.criteria?.length, `S${s.id} homework criteria`).toBeGreaterThan(0);
+      expect(s.homework.challenge, `S${s.id} homework challenge`).toBeTruthy();
+    }
+  });
+
+  it("teaches for exactly 90 minutes", () => {
+    for (const s of chapters) {
+      expect(s.minutes, `S${s.id} minutes`).toBe(90);
+      expect(s.agenda!.reduce((n, a) => n + a.minutes, 0), `S${s.id} agenda total`).toBe(90);
+      for (const a of s.agenda!) expect(a.minutes).toBeGreaterThan(0);
+    }
+  });
+
+  it("meets the depth, vocabulary and assessment targets", () => {
+    for (const s of chapters) {
+      expect(s.objectives.length, `S${s.id} objectives`).toBeGreaterThanOrEqual(5);
+      expect(s.sections.length, `S${s.id} sections`).toBeGreaterThanOrEqual(8);
+      expect(s.terms.length, `S${s.id} terms`).toBeGreaterThanOrEqual(20);
+      expect(s.quiz.length, `S${s.id} mcq`).toBeGreaterThanOrEqual(10);
+      expect(s.trueFalse?.length, `S${s.id} true/false`).toBeGreaterThanOrEqual(5);
+      expect(s.classification?.length, `S${s.id} classification`).toBeGreaterThanOrEqual(3);
+      expect(s.scenarios?.length, `S${s.id} scenarios`).toBeGreaterThanOrEqual(2);
+      expect(s.practicalChecks?.length, `S${s.id} practical checks`).toBeGreaterThanOrEqual(1);
+      expect(s.refs.length, `S${s.id} refs`).toBeGreaterThanOrEqual(5);
+    }
+  });
+
+  it("ships a complete major lab", () => {
+    for (const s of chapters) {
+      const lab = s.lab;
+      expect(lab.objectives?.length, `S${s.id} lab objectives`).toBeGreaterThan(0);
+      expect(lab.prerequisites?.length, `S${s.id} lab prerequisites`).toBeGreaterThan(0);
+      expect(lab.environment, `S${s.id} lab environment`).toBeTruthy();
+      expect(lab.tools?.length, `S${s.id} lab tools`).toBeGreaterThan(0);
+      expect(lab.authorization, `S${s.id} lab authorization`).toBeTruthy();
+      expect(lab.detailedSteps?.length, `S${s.id} lab steps`).toBeGreaterThanOrEqual(5);
+      expect(lab.troubleshooting?.length, `S${s.id} lab troubleshooting`).toBeGreaterThan(0);
+      expect(lab.deliverables?.length, `S${s.id} lab deliverables`).toBeGreaterThan(0);
+      expect(lab.rubric?.length, `S${s.id} lab rubric`).toBeGreaterThan(0);
+      expect(lab.rubric!.reduce((n, r) => n + r.weight, 0), `S${s.id} rubric total`).toBe(100);
+      expect(lab.steps.length).toBeGreaterThanOrEqual(5);
+    }
+  });
+});
+
 describe.each(SESSIONS.map((s) => [s.id, s] as const))("session %i", (_id, s) => {
   it("has a full lesson", () => {
     expect(s.objectives.length).toBeGreaterThanOrEqual(4);

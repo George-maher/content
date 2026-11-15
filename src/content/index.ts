@@ -1,7 +1,10 @@
 import type { Session } from "./types";
-import { s01, s02 } from "./s01_02";
-import { s03, s04 } from "./s03_04";
-import { s05, s06 } from "./s05_06";
+import { s01 } from "./chapters/s01";
+import { s02 } from "./chapters/s02";
+import { s03 } from "./chapters/s03";
+import { s04 } from "./chapters/s04";
+import { s05 } from "./chapters/s05";
+import { s06 } from "./s05_06";
 import { s07, s08 } from "./s07_08";
 import { s09, s10 } from "./s09_10";
 import { s11, s12 } from "./s11_12";

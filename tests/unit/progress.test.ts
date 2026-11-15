@@ -4,6 +4,8 @@ import {
   clampFlags,
   completion,
   emptyProgress,
+  loadProgress,
+  migrateV1ToV2,
   parseProgress,
   validScore,
 } from "../../src/lib/progress";
@@ -91,5 +93,47 @@ describe("completion", () => {
     expect(completion([true], 0)).toBe(0);
     expect(completion(undefined, 0)).toBe(0);
     expect(completion([true, false], 2)).toBe(0.5);
+  });
+});
+
+describe("v1 to v2 progress migration", () => {
+  const legacy = {
+    read: { 1: true, 3: true, 4: true, 20: true },
+    lab: { 1: [true, true] },
+    hw: { 1: [true] },
+    quiz: { 1: { score: 4, total: 6 } },
+    exam: { score: 30, total: 40 },
+  };
+
+  it("preserves surviving reading progress and resets changed work", () => {
+    const migrated = migrateV1ToV2(legacy);
+    expect(migrated.read).toEqual({ 1: true, 3: true, 19: true });
+    expect(migrated.lab).toEqual({});
+    expect(migrated.hw).toEqual({});
+    expect(migrated.quiz).toEqual({});
+    expect(migrated.exam).toBeUndefined();
+  });
+
+  it("requires every source session for a merged chapter", () => {
+    expect(migrateV1ToV2({ ...emptyProgress(), read: { 3: true } }).read[3]).toBeUndefined();
+    expect(
+      migrateV1ToV2({ ...emptyProgress(), read: { 3: true, 4: true } }).read[3],
+    ).toBe(true);
+  });
+
+  it("does not credit secondary chapters created by a split", () => {
+    const migrated = migrateV1ToV2({ ...emptyProgress(), read: { 5: true } });
+    expect(migrated.read[4]).toBe(true);
+    expect(migrated.read[5]).toBeUndefined();
+    expect(migrated.read[6]).toBeUndefined();
+  });
+
+  it("prefers current progress and only migrates when it is absent", () => {
+    const current = JSON.stringify({ read: { 2: true }, lab: {}, hw: {}, quiz: {} });
+    expect(loadProgress(current, JSON.stringify(legacy)).migrated).toBe(false);
+    expect(loadProgress(current, JSON.stringify(legacy)).progress.read).toEqual({ 2: true });
+    const loaded = loadProgress(null, JSON.stringify(legacy));
+    expect(loaded.migrated).toBe(true);
+    expect(loaded.progress.read[1]).toBe(true);
   });
 });

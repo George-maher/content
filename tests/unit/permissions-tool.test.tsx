@@ -2,11 +2,12 @@
 import "@testing-library/jest-dom/vitest";
 import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { PermTool } from "../../src/components/LabToolsA";
 import { Provider } from "../../src/store";
 
 afterEach(cleanup);
+beforeEach(() => localStorage.setItem("csf.lang", "en"));
 
 describe("PermTool", () => {
   it("does not claim everyone can read chmod 604", async () => {

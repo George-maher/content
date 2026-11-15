@@ -4,7 +4,7 @@ import SessionView from "./components/SessionView";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { Exam, Glossary, Home, NotFound, SessionList } from "./components/Pages";
 import { href, useRoute, type Route } from "./router";
-import { Provider, useLang } from "./store";
+import { Provider, useLang, useProgress } from "./store";
 import { S } from "./strings";
 
 function routeTitle(route: Route, t: (x: { en: string; ar: string }) => string): string {
@@ -28,6 +28,7 @@ function routeTitle(route: Route, t: (x: { en: string; ar: string }) => string):
 
 function Shell() {
   const { t, lang, setLang } = useLang();
+  const { migrationNotice, dismissMigrationNotice } = useProgress();
   const route = useRoute();
   const mainRef = useRef<HTMLElement>(null);
   const firstRender = useRef(true);
@@ -101,6 +102,26 @@ function Shell() {
       </header>
       <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">{title}</div>
       <main id="main" ref={mainRef} tabIndex={-1} className="mx-auto max-w-5xl px-4 py-8 focus:outline-none">
+        {migrationNotice && (
+          <div
+            role="status"
+            className="mb-5 rounded-2xl border border-amber-500/50 bg-amber-500/10 p-4 text-sm text-amber-100"
+          >
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <p className="font-bold">{t(S.migrationTitle)}</p>
+                <p className="mt-1 leading-relaxed">{t(S.migrationBody)}</p>
+              </div>
+              <button
+                type="button"
+                onClick={dismissMigrationNotice}
+                className="min-h-11 rounded-lg border border-amber-400/60 px-3 py-2 font-semibold text-amber-100 hover:bg-amber-500/20 focus-visible:ring-2 focus-visible:ring-amber-300"
+              >
+                {t(S.dismiss)}
+              </button>
+            </div>
+          </div>
+        )}
         <ErrorBoundary
           resetKey={routeKey}
           title={t(S.errorTitle)}

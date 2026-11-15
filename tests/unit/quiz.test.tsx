@@ -2,7 +2,7 @@
 import "@testing-library/jest-dom/vitest";
 import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import QuizRunner from "../../src/components/QuizRunner";
 import type { QuizQ } from "../../src/content/types";
 import { Provider } from "../../src/store";
@@ -29,6 +29,7 @@ const questions: QuizQ[] = [
 ];
 
 afterEach(cleanup);
+beforeEach(() => localStorage.setItem("csf.lang", "en"));
 
 describe("QuizRunner", () => {
   it("supports native radio selection, submit gating, scoring and retry", async () => {
