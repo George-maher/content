@@ -22,8 +22,8 @@
 | 3 — Foundation & shared components | COMPLETED | Schema, rendering, assessment, labs, progress migration, templates |
 | 4 — Content migration & sessions | COMPLETE | Sessions 1–20 + Labs 1–10 done (Batch 3 complete) |
 | 5 — Labs & assessment integration | COMPLETE | Major labs 1–10 integrated with instructor guides (Labs 1–10 guides in `docs/instructor/`) |
-| 6 — Consistency & technical validation | NOT STARTED | Full educational and technical audit |
-| 7 — Final review & delivery | NOT STARTED | Final report and checklist |
+| 6 — Consistency & technical validation | COMPLETE | Bilingual sweep, contract audit (all 20 sessions), technical validation, bundle check — all PASS |
+| 7 — Final review & delivery | COMPLETE | Delivery report + checklist in `PHASE_6_7_DELIVERY_REPORT.md`; course ready for delivery |
 
 ## Phase 3 completed tasks
 
@@ -230,7 +230,7 @@ No screenshots or tool output were fabricated. Sessions 3–5 use fictional mess
 
 ## Next planned action
 
-**Phase 4 Batch 3 (Sessions 11–20 + Labs 7–10) and Phase 5 (Labs & assessment integration) are COMPLETE.** All 20 v2 chapters authored, wired, validated, and tracked (S11–S20), and instructor guides for major labs 1–10 are all present under `docs/instructor/` (Labs 7–10 authored this pass: Web App `sqli`, Crypto/IAM `cipher`+`rbac`, Vuln/SIEM `risk`+`logs`, IR/Capstone `order`+`risk`). Full re-validation PASS: typecheck, lint, 193 tests, 0 vulnerabilities. **Next:** Phase 6 — Consistency & technical validation: run the full educational and technical audit (bilingual quality sweep, contract checks across all 20 sessions, bundle-size check), then Phase 7 — final review & delivery report. Session IDs 1–20 in order and the v2 chapter contract are preserved.
+**All phases (0–7) are COMPLETE — the Level 1 Cybersecurity Foundation curriculum is delivered.** Phase 6 (consistency & technical validation) and Phase 7 (final review & delivery) are done: bilingual quality sweep, full contract audit across all 20 sessions, technical validation (typecheck/lint/193 tests/verify 0 vulns), and bundle-size check all PASS, and the delivery report + checklist are recorded in `docs/curriculum/PHASE_6_7_DELIVERY_REPORT.md`. The course is **ready for delivery** — 20 sessions, 10 major labs, 10 instructor guides, all wired and green. No blockers remain; any further work is a new curriculum phase (e.g. Level 2+), to be started on a fresh branch.
 
 ## Phase 0–2 deliverables produced
 
