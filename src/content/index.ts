@@ -17,7 +17,7 @@ import { s15 } from "./chapters/s15";
 import { s16 } from "./chapters/s16";
 import { s17 } from "./chapters/s17";
 import { s18 } from "./chapters/s18";
-import { s19 } from "./s17_18";
+import { s19 } from "./chapters/s19";
 import { s20 } from "./s19_20";
 
 export const SESSIONS: Session[] = [s01, s02, s03, s04, s05, s06, s07, s08, s09, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20];
