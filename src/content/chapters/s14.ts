@@ -23,8 +23,8 @@ export const s14: Session = {
   ),
   prerequisites: [
     l(
-      "Session 12, Cryptography: how signatures and integrity checks support secure systems.",
-      "الجلسة 12، التشفير: كيف تدعم التوقيعات وفحوص السلامة الأنظمة الآمنة.",
+      "Session 9, Cryptography: how signatures and integrity checks support secure systems.",
+      "الجلسة 9، التشفير: كيف تدعم التوقيعات وفحوص السلامة الأنظمة الآمنة.",
     ),
     l(
       "Session 13, IAM: how access control and least privilege limit what a compromised account can reach.",

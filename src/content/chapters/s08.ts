@@ -1,7 +1,7 @@
 import { l, type Session } from "../types";
 
 export const s08: Session = {
-  id: 8,
+  id: 7,
   phase: 3,
   schemaVersion: 2,
   minutes: 90,
@@ -14,8 +14,8 @@ export const s08: Session = {
     "كيف تتحدث التطبيقات فعليًا عبر الشبكة: TCP/UDP مع المصافحات والمحارف، وDNS وDHCP وHTTP وHTTPS، وكيفية مراقبة الحركة الفعلية بـ ping وtraceroute والتقاط الحزم — ولماذا تُعد الوعي الشبكي مهارة أمنية.",
   ),
   overview: l(
-    "Session 7 explained how devices are addressed. This session explains how applications actually move data. You will learn the difference between TCP (reliable, connection-based) and UDP (fast, connectionless), the SYN handshake and FIN teardown, how DNS resolves names to addresses and DHCP assigns addresses automatically. You will meet application protocols such as HTTP and HTTPS, and practice observing traffic with ping, traceroute and a packet capture tool. Understanding these protocols and services is what lets a security student read what is happening on the wire and understand where protections and attacks live.",
-    "شرحت الجلسة 7 كيف تُعنون الأجهزة. وتشرح هذه الجلسة كيف تنقل التطبيقات البيانات فعليًا. ستتعلم الفرق بين TCP (موثوق ومبني على اتصال) وUDP (سريع وبلا اتصال)، ومصافحة SYN وإيقاف FIN، وكيف يحوّل DNS الأسماء إلى عناوين وكيف يعين DHCP العناوين تلقائيًا. وستتعرف على بروتوكولات التطبيقات مثل HTTP وHTTPS، وتتدرب على مراقبة الحركة بـ ping وtraceroute وأداة التقاط الحزم. وفهم هذه البروتوكولات والخدمات هو ما يتيح لطالب الأمن قراءة ما يحدث على الشبكة وفهم أماكن الحماية والهجمات.",
+    "Session 6 explained how devices are addressed. This session explains how applications actually move data. You will learn the difference between TCP (reliable, connection-based) and UDP (fast, connectionless), the SYN handshake and FIN teardown, how DNS resolves names to addresses and DHCP assigns addresses automatically. You will meet application protocols such as HTTP and HTTPS, and practice observing traffic with ping, traceroute and a packet capture tool. Understanding these protocols and services is what lets a security student read what is happening on the wire and understand where protections and attacks live.",
+    "شرحت الجلسة 6 كيف تُعنون الأجهزة. وتشرح هذه الجلسة كيف تنقل التطبيقات البيانات فعليًا. ستتعلم الفرق بين TCP (موثوق ومبني على اتصال) وUDP (سريع وبلا اتصال)، ومصافحة SYN وإيقاف FIN، وكيف يحوّل DNS الأسماء إلى عناوين وكيف يعين DHCP العناوين تلقائيًا. وستتعرف على بروتوكولات التطبيقات مثل HTTP وHTTPS، وتتدرب على مراقبة الحركة بـ ping وtraceroute وأداة التقاط الحزم. وفهم هذه البروتوكولات والخدمات هو ما يتيح لطالب الأمن قراءة ما يحدث على الشبكة وفهم أماكن الحماية والهجمات.",
   ),
   whyItMatters: l(
     "Almost every cybersecurity activity involves network protocols. When a browser loads a page, email is sent, an attacker scans a host, or malware moves laterally, the underlying activity is TCP, UDP, DNS or HTTP. Knowing how these protocols behave lets you recognize normal traffic versus suspicious, read a packet capture, understand why a service is exposed, and reason about which defenses protect which part of the connection. Network awareness underpins scanning (later), web security, and incident investigation.",
@@ -23,8 +23,8 @@ export const s08: Session = {
   ),
   prerequisites: [
     l(
-      "Session 7, Networking Fundamentals I: layers, devices, MAC and IP addressing, NAT and subnetting.",
-      "الجلسة 7، أساسيات الشبكات 1: الطبقات والأجهزة وعنونة MAC وIP وNAT وتقسيم الشبكات.",
+      "Session 6, Networking Fundamentals I: layers, devices, MAC and IP addressing, NAT and subnetting.",
+      "الجلسة 6، أساسيات الشبكات 1: الطبقات والأجهزة وعنونة MAC وIP وNAT وتقسيم الشبكات.",
     ),
     l(
       "Basic comfort with the concept of a client and a server exchanging data.",
@@ -62,7 +62,7 @@ export const s08: Session = {
     ),
   ],
   agenda: [
-    { label: l("Welcome and Session 7 recap", "الترحيب ومراجعة الجلسة 7"), minutes: 5 },
+    { label: l("Welcome and Session 6 recap", "الترحيب ومراجعة الجلسة 6"), minutes: 5 },
     { label: l("TCP vs UDP and reliability", "TCP مقابل UDP والموثوقية"), minutes: 14 },
     { label: l("The SYN handshake and FIN teardown", "مصافحة SYN وإيقاف FIN"), minutes: 12 },
     { label: l("Ports and how services share a host", "المنافذ وكيف تتشارك الخدمات مضيفًا"), minutes: 10 },
@@ -72,8 +72,8 @@ export const s08: Session = {
     { label: l("Practical exercise and assessment", "التمرين العملي والتقييم"), minutes: 10 },
   ],
   introduction: l(
-    "Session 7 explained how devices are addressed with MAC and IP addresses and how subnetting organizes networks. This session moves up to how applications actually communicate. You will learn why TCP is reliable and UDP is fast, how the SYN handshake opens a connection and how FIN closes it, how ports let many services share one host, how DNS turns names like example.com into an IP address and how DHCP assigns addresses automatically. You will meet HTTP and HTTPS, the protocols behind the web, and then practice observing real traffic using ping, traceroute and a packet capture tool. By the end you can read what is happening on the wire and understand where protocol behavior, services and security controls meet.",
-    "شرحت الجلسة 7 كيف تُعنون الأجهزة بعناوين MAC وIP وكيف ينظّم تقسيم الشبكات الشبكات. وتنتقل هذه الجلسة لأعلى إلى كيف تتواصل التطبيقات فعليًا. ستتعلم سبب موثوقية TCP وسرعة UDP، وكيف تفتح مصافحة SYN الاتصال وكيف تغلقه FIN، وكيف تتيح المنافذ لخدمات كثيرة مشاركة مضيف واحد، وكيف يحوّل DNS الأسماء مثل example.com إلى عنوان IP وكيف يعين DHCP العناوين تلقائيًا. وستتعرف على HTTP وHTTPS، البروتوكولات خلف الويب، ثم تتدرب على مراقبة الحركة الفعلية باستخدام ping وtraceroute وأداة التقاط الحزم. ومع نهاية الجلسة يمكنك قراءة ما يحدث على الشبكة وفهم أماكن التقاء سلوك البروتوكولات والخدمات وضوابط الأمان.",
+    "Session 6 explained how devices are addressed with MAC and IP addresses and how subnetting organizes networks. This session moves up to how applications actually communicate. You will learn why TCP is reliable and UDP is fast, how the SYN handshake opens a connection and how FIN closes it, how ports let many services share one host, how DNS turns names like example.com into an IP address and how DHCP assigns addresses automatically. You will meet HTTP and HTTPS, the protocols behind the web, and then practice observing real traffic using ping, traceroute and a packet capture tool. By the end you can read what is happening on the wire and understand where protocol behavior, services and security controls meet.",
+    "شرحت الجلسة 6 كيف تُعنون الأجهزة بعناوين MAC وIP وكيف ينظّم تقسيم الشبكات الشبكات. وتنتقل هذه الجلسة لأعلى إلى كيف تتواصل التطبيقات فعليًا. ستتعلم سبب موثوقية TCP وسرعة UDP، وكيف تفتح مصافحة SYN الاتصال وكيف تغلقه FIN، وكيف تتيح المنافذ لخدمات كثيرة مشاركة مضيف واحد، وكيف يحوّل DNS الأسماء مثل example.com إلى عنوان IP وكيف يعين DHCP العناوين تلقائيًا. وستتعرف على HTTP وHTTPS، البروتوكولات خلف الويب، ثم تتدرب على مراقبة الحركة الفعلية باستخدام ping وtraceroute وأداة التقاط الحزم. ومع نهاية الجلسة يمكنك قراءة ما يحدث على الشبكة وفهم أماكن التقاء سلوك البروتوكولات والخدمات وضوابط الأمان.",
   ),
   sections: [
     {
@@ -313,7 +313,7 @@ export const s08: Session = {
       l("Assess and report network exposure", "تقييم الانكشاف الشبكي ورفعه في تقرير"),
     ],
     prerequisites: [
-      l("Session 7: networking layers, devices, IP addressing and subnets", "الجلسة 7: طبقات الشبكات والأجهزة وعنونة IP والشبكات الفرعية"),
+      l("Session 6: networking layers, devices, IP addressing and subnets", "الجلسة 6: طبقات الشبكات والأجهزة وعنونة IP والشبكات الفرعية"),
       l("Basic comfort with a terminal or command prompt", "الراحة الأساسية مع نافذة طرفية أو سطر الأوامر"),
     ],
     environment: l(

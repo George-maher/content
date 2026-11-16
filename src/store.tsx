@@ -17,6 +17,7 @@ import {
   emptyProgress,
   loadProgress,
   parseProgress,
+  remapSessionIds,
   type Progress,
   type QuizScore,
 } from "./lib/progress";
@@ -29,14 +30,28 @@ const LKEY = STORAGE_KEYS.lang;
 const KEY = STORAGE_KEYS.progress;
 const LEGACY_KEY = STORAGE_KEYS.legacyProgress;
 const MIGRATION_KEY = STORAGE_KEYS.migrationNotice;
+const REORDER_KEY = STORAGE_KEYS.reorder;
 
 function initialProgress(): Progress {
   const loaded = loadProgress(safeGet(KEY), safeGet(LEGACY_KEY));
-  if (loaded.migrated) {
-    safeSet(KEY, JSON.stringify(loaded.progress));
-    safeSet(MIGRATION_KEY, "1");
+  let progress = loaded.progress;
+  let reordered = false;
+  // One-time: carry existing progress with its educational session across the
+  // Level 1 session reorder (sessions 6–12 renumbered). Skipped once the
+  // reorder marker is set so keys are never re-mapped a second time.
+  if (safeGet(REORDER_KEY) !== "1") {
+    const remapped = remapSessionIds(progress);
+    if (remapped.changed) {
+      progress = remapped.progress;
+      reordered = true;
+    }
   }
-  return loaded.progress;
+  if (loaded.migrated || reordered) {
+    safeSet(KEY, JSON.stringify(progress));
+    if (loaded.migrated) safeSet(MIGRATION_KEY, "1");
+    if (reordered) safeSet(REORDER_KEY, "1");
+  }
+  return progress;
 }
 
 interface LangCtx {

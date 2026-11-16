@@ -178,18 +178,18 @@ describe("major lab identity", () => {
     expect(SESSIONS.find((s) => s.majorLabId === "lab-01")?.id).toBe(3);
     // Lab 2 = Linux command line & permissions (Session 5)
     expect(SESSIONS.find((s) => s.majorLabId === "lab-02")?.id).toBe(5);
-    // Lab 3 = Windows administration & Active Directory (Session 6)
-    expect(SESSIONS.find((s) => s.majorLabId === "lab-03")?.id).toBe(6);
-    // Lab 4 = IP addressing & subnetting (Session 7)
-    expect(SESSIONS.find((s) => s.majorLabId === "lab-04")?.id).toBe(7);
-    // Lab 5 = network discovery & firewall rules (Session 9)
-    expect(SESSIONS.find((s) => s.majorLabId === "lab-05")?.id).toBe(9);
-    // Lab 6 = web server, document root & HTTP (Session 10)
-    expect(SESSIONS.find((s) => s.majorLabId === "lab-06")?.id).toBe(10);
-    // Lab 7 = web application security & SQL injection (Session 11)
-    expect(SESSIONS.find((s) => s.majorLabId === "lab-07")?.id).toBe(11);
-    // Lab 8 = cryptography & access control, split across Sessions 12 and 13
-    expect(SESSIONS.filter((s) => s.majorLabId === "lab-08").map((s) => s.id).sort((a, b) => a - b)).toEqual([12, 13]);
+    // Lab 3 = Windows administration & Active Directory (Session 10)
+    expect(SESSIONS.find((s) => s.majorLabId === "lab-03")?.id).toBe(10);
+    // Lab 4 = IP addressing & subnetting (Session 6)
+    expect(SESSIONS.find((s) => s.majorLabId === "lab-04")?.id).toBe(6);
+    // Lab 5 = network discovery & firewall rules (Session 8)
+    expect(SESSIONS.find((s) => s.majorLabId === "lab-05")?.id).toBe(8);
+    // Lab 6 = web server, document root & HTTP (Session 11)
+    expect(SESSIONS.find((s) => s.majorLabId === "lab-06")?.id).toBe(11);
+    // Lab 7 = web application security & SQL injection (Session 12)
+    expect(SESSIONS.find((s) => s.majorLabId === "lab-07")?.id).toBe(12);
+    // Lab 8 = cryptography & access control, split across Sessions 9 and 13
+    expect(SESSIONS.filter((s) => s.majorLabId === "lab-08").map((s) => s.id).sort((a, b) => a - b)).toEqual([9, 13]);
   });
 });
 

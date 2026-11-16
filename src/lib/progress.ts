@@ -109,13 +109,13 @@ const READ_SOURCES: Record<number, number[]> = {
   3: [3, 4],
   4: [5],
   5: [],
-  6: [],
-  7: [6],
-  8: [7],
-  9: [8],
+  6: [6],
+  7: [7],
+  8: [8],
+  9: [9, 10],
   10: [],
-  11: [13],
-  12: [9, 10],
+  11: [],
+  12: [13],
   13: [11, 12],
   14: [14],
   15: [16],
@@ -125,6 +125,58 @@ const READ_SOURCES: Record<number, number[]> = {
   19: [1, 20],
   20: [],
 };
+
+/**
+ * Session reorder map: old session id -> new session id (Level 1 reorder of
+ * sessions 6–12). Only these ids changed; 1–5 and 13–20 keep their numbers.
+ * Used to carry existing (v2-format) student progress with its educational
+ * session when the displayed session number changes.
+ */
+export const SESSION_ID_REMAP: Record<number, number> = {
+  6: 10,
+  7: 6,
+  8: 7,
+  9: 8,
+  10: 11,
+  11: 12,
+  12: 9,
+};
+
+/**
+ * Re-key a progress object from old session ids to new session ids so a
+ * student's records stay attached to the same educational session. Returns the
+ * re-keyed progress and whether any key actually moved.
+ */
+export function remapSessionIds(
+  progress: Progress,
+): { progress: Progress; changed: boolean } {
+  const move = (map: Record<number, unknown>): { out: Record<number, unknown>; changed: boolean } => {
+    const out: Record<number, unknown> = {};
+    let changed = false;
+    for (const [k, v] of Object.entries(map)) {
+      const oldId = Number(k);
+      const newId = SESSION_ID_REMAP[oldId] ?? oldId;
+      if (newId !== oldId) changed = true;
+      out[newId] = v;
+    }
+    return { out, changed };
+  };
+  const read = move(progress.read);
+  const lab = move(progress.lab);
+  const hw = move(progress.hw);
+  const quiz = move(progress.quiz);
+  const changed = read.changed || lab.changed || hw.changed || quiz.changed;
+  return {
+    progress: {
+      read: read.out as Record<number, boolean>,
+      lab: lab.out as Record<number, boolean[]>,
+      hw: hw.out as Record<number, boolean[]>,
+      quiz: quiz.out as Record<number, QuizScore>,
+      exam: progress.exam,
+    },
+    changed,
+  };
+}
 
 /**
  * Migrate the original v1 progress shape to the restructured course.

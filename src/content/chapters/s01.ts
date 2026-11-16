@@ -1058,8 +1058,8 @@ export const s01: Session = {
       org: "OWASP",
       url: "https://owasp.org/Top10/",
       desc: l(
-        "The current awareness standard for web application security risks; revisited in Session 11.",
-        "المعيار التوعوي الحالي لمخاطر أمن تطبيقات الويب؛ يُعاد تناوله في الجلسة 11.",
+        "The current awareness standard for web application security risks; revisited in Session 12.",
+        "المعيار التوعوي الحالي لمخاطر أمن تطبيقات الويب؛ يُعاد تناوله في الجلسة 12.",
       ),
     },
     {

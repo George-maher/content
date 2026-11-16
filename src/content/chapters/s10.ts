@@ -1,8 +1,8 @@
 import { l, type Session } from "../types";
 
 export const s10: Session = {
-  id: 10,
-  phase: 3,
+  id: 11,
+  phase: 4,
   schemaVersion: 2,
   minutes: 90,
   title: l(
@@ -23,8 +23,8 @@ export const s10: Session = {
   ),
   prerequisites: [
     l(
-      "Session 8, Networking Fundamentals II: TCP/UDP, ports and the HTTP/HTTPS protocols.",
-      "الجلسة 8، أساسيات الشبكات 2: TCP/UDP والمنافذ وبروتوكولات HTTP/HTTPS.",
+      "Session 7, Networking Fundamentals II: TCP/UDP, ports and the HTTP/HTTPS protocols.",
+      "الجلسة 7، أساسيات الشبكات 2: TCP/UDP والمنافذ وبروتوكولات HTTP/HTTPS.",
     ),
     l(
       "Basic comfort with URLs and using a web browser.",
@@ -314,7 +314,7 @@ export const s10: Session = {
       l("Verify status codes and apply hardening", "التحقق من رموز الحالة وتطبيق التقوية"),
     ],
     prerequisites: [
-      l("Session 8: HTTP/HTTPS and the request/response model", "الجلسة 8: HTTP/HTTPS ونموذج الطلب/الاستجابة"),
+      l("Session 7: HTTP/HTTPS and the request/response model", "الجلسة 7: HTTP/HTTPS ونموذج الطلب/الاستجابة"),
       l("Basic comfort with URLs and using a web browser", "الراحة الأساسية مع عناوين URL واستخدام متصفح الويب"),
     ],
     environment: l(
