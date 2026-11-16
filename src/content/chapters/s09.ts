@@ -1,7 +1,7 @@
 import { l, type Session } from "../types";
 
 export const s09: Session = {
-  id: 9,
+  id: 8,
   phase: 3,
   schemaVersion: 2,
   minutes: 90,
@@ -23,12 +23,12 @@ export const s09: Session = {
   ),
   prerequisites: [
     l(
-      "Session 7, Networking Fundamentals I: IP addressing, subnetting and the default gateway.",
-      "الجلسة 7، أساسيات الشبكات 1: عنونة IP وتقسيم الشبكات والبوابة الافتراضية.",
+      "Session 6, Networking Fundamentals I: IP addressing, subnetting and the default gateway.",
+      "الجلسة 6، أساسيات الشبكات 1: عنونة IP وتقسيم الشبكات والبوابة الافتراضية.",
     ),
     l(
-      "Session 8, Networking Fundamentals II: TCP/UDP, ports and the services these controls filter.",
-      "الجلسة 8، أساسيات الشبكات 2: TCP/UDP والمنافذ والخدمات التي تصفيها هذه الضوابط.",
+      "Session 7, Networking Fundamentals II: TCP/UDP, ports and the services these controls filter.",
+      "الجلسة 7، أساسيات الشبكات 2: TCP/UDP والمنافذ والخدمات التي تصفيها هذه الضوابط.",
     ),
     l(
       "A legal and ethical mindset: configure and test security controls only on networks you own or are authorized to manage.",
@@ -72,8 +72,8 @@ export const s09: Session = {
     { label: l("Practical exercise and assessment", "التمرين العملي والتقييم"), minutes: 12 },
   ],
   introduction: l(
-    "Sessions 7 and 8 explained how networks are built and how traffic flows. This session turns to defending that flow. You will learn the firewall types and the logic of their rules, the principle of default deny and least privilege, and how rule order decides what actually passes. You will see how DMZs and internal segmentation contain a breach, and how IDS and IPS differ in whether they only detect or also block. You will cover VPNs for remote and site-to-site traffic, secure Wi-Fi settings, and the zero-trust mindset. The session closes with a practical lab in which you repair a mis-configured firewall rule set, applying everything you have learned.",
-    "شرحت الجلستان 7 و8 كيف تُبنى الشبكات وكيف تتدفق الحركة. وتنتقل هذه الجلسة إلى دفاع هذا التدفق. ستتعلم أنواع الجدران النارية ومنطق قواعدها، ومبدأ المنع الافتراضي وأقل صلاحية، وكيف يقرر ترتيب القواعد ما يُسمح بالمرور فعليًا. وسترى كيف تحصر المناطق المنزوعة والتقسيم الداخلي الاختراق، وكيف يختلف IDS وIPS في كونهما يكتشفان فقط أو يحظران أيضًا. وستتناول VPN لحركة الوصول البعيد وحركة المواقع، وإعدادات الواي فاي الآمن، وتفكير انعدام الثقة. وتنتهي الجلسة بمختبر عملي تصلح فيه مجموعة قواعد جدار ناري غير مضبوطة، مطبّقًا كل ما تعلمته.",
+    "Sessions 6 and 7 explained how networks are built and how traffic flows. This session turns to defending that flow. You will learn the firewall types and the logic of their rules, the principle of default deny and least privilege, and how rule order decides what actually passes. You will see how DMZs and internal segmentation contain a breach, and how IDS and IPS differ in whether they only detect or also block. You will cover VPNs for remote and site-to-site traffic, secure Wi-Fi settings, and the zero-trust mindset. The session closes with a practical lab in which you repair a mis-configured firewall rule set, applying everything you have learned.",
+    "شرحت الجلستان 6 و7 كيف تُبنى الشبكات وكيف تتدفق الحركة. وتنتقل هذه الجلسة إلى دفاع هذا التدفق. ستتعلم أنواع الجدران النارية ومنطق قواعدها، ومبدأ المنع الافتراضي وأقل صلاحية، وكيف يقرر ترتيب القواعد ما يُسمح بالمرور فعليًا. وسترى كيف تحصر المناطق المنزوعة والتقسيم الداخلي الاختراق، وكيف يختلف IDS وIPS في كونهما يكتشفان فقط أو يحظران أيضًا. وستتناول VPN لحركة الوصول البعيد وحركة المواقع، وإعدادات الواي فاي الآمن، وتفكير انعدام الثقة. وتنتهي الجلسة بمختبر عملي تصلح فيه مجموعة قواعد جدار ناري غير مضبوطة، مطبّقًا كل ما تعلمته.",
   ),
   sections: [
     {
@@ -301,8 +301,8 @@ export const s09: Session = {
       l("Connect firewall rules to segmentation and containment goals", "ربط قواعد الجدار الناري بأهداف التقسيم والحصر"),
     ],
     prerequisites: [
-      l("Session 7: IP addressing, subnetting and the default gateway", "الجلسة 7: عنونة IP وتقسيم الشبكات والبوابة الافتراضية"),
-      l("Session 8: TCP/UDP, ports and common services", "الجلسة 8: TCP/UDP والمنافذ والخدمات الشائعة"),
+      l("Session 6: IP addressing, subnetting and the default gateway", "الجلسة 6: عنونة IP وتقسيم الشبكات والبوابة الافتراضية"),
+      l("Session 7: TCP/UDP, ports and common services", "الجلسة 7: TCP/UDP والمنافذ والخدمات الشائعة"),
     ],
     environment: l(
       "The companion firewall simulator in a browser, or a paper exercise. No real firewall, router or network is involved. All practice uses a simulated rule set and fictional addresses.",

@@ -1,7 +1,7 @@
 import { l, type Session } from "../types";
 
 export const s11: Session = {
-  id: 11,
+  id: 12,
   phase: 4,
   schemaVersion: 2,
   minutes: 90,
@@ -23,8 +23,8 @@ export const s11: Session = {
   ),
   prerequisites: [
     l(
-      "Session 10, Web Fundamentals: HTTP request/response, the document root and status codes.",
-      "الجلسة 10، أساسيات الويب: طلب/استجابة HTTP ومستوى الجذر ورموز الحالة.",
+      "Session 11, Web Fundamentals: HTTP request/response, the document root and status codes.",
+      "الجلسة 11، أساسيات الويب: طلب/استجابة HTTP ومستوى الجذر ورموز الحالة.",
     ),
     l(
       "Basic comfort with how a web form and a database interact.",
@@ -311,7 +311,7 @@ export const s11: Session = {
       l("Apply secure-coding habits to a login flow", "تطبيق عادات البرمجة الآمنة على مسار الدخول"),
     ],
     prerequisites: [
-      l("Session 10: HTTP request/response and how a web form submits data", "الجلسة 10: طلب/استجابة HTTP وكيف يرسل نموذج الويب البيانات"),
+      l("Session 11: HTTP request/response and how a web form submits data", "الجلسة 11: طلب/استجابة HTTP وكيف يرسل نموذج الويب البيانات"),
       l("Basic comfort with the idea of a database query", "الراحة الأساسية مع فكرة استعلام قاعدة البيانات"),
     ],
     environment: l(

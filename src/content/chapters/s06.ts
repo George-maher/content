@@ -1,8 +1,8 @@
 import { l, type Session } from "../types";
 
 export const s06: Session = {
-  id: 6,
-  phase: 2,
+  id: 10,
+  phase: 4,
   schemaVersion: 2,
   minutes: 90,
   title: l(

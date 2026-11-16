@@ -23,12 +23,12 @@ export const s13: Session = {
   ),
   prerequisites: [
     l(
-      "Session 11, Web Application Security: how login forms, sessions and cookies are attacked.",
-      "الجلسة 11، أمن تطبيقات الويب: كيف تُهاجم نماذج الدخول والجلسات وملفات الارتباط.",
+      "Session 12, Web Application Security: how login forms, sessions and cookies are attacked.",
+      "الجلسة 12، أمن تطبيقات الويب: كيف تُهاجم نماذج الدخول والجلسات وملفات الارتباط.",
     ),
     l(
-      "Session 12, Cryptography: how hashing and signatures support authentication.",
-      "الجلسة 12، التشفير: كيف تدعم التجزئة والتوقيعات المصادقة.",
+      "Session 9, Cryptography: how hashing and signatures support authentication.",
+      "الجلسة 9، التشفير: كيف تدعم التجزئة والتوقيعات المصادقة.",
     ),
     l(
       "A legal and ethical mindset: test access controls only on systems you own or are authorized to test.",
@@ -324,8 +324,8 @@ export const s13: Session = {
       l("Identify events that trigger an access review", "تحديد الأحداث التي تستدعي مراجعة وصول"),
     ],
     prerequisites: [
-      l("Session 11: how login forms, sessions and cookies are attacked", "الجلسة 11: كيف تُهاجم نماذج الدخول والجلسات وملفات الارتباط"),
-      l("Session 12: how hashing and signatures support authentication", "الجلسة 12: كيف تدعم التجزئة والتوقيعات المصادقة"),
+      l("Session 12: how login forms, sessions and cookies are attacked", "الجلسة 12: كيف تُهاجم نماذج الدخول والجلسات وملفات الارتباط"),
+      l("Session 9: how hashing and signatures support authentication", "الجلسة 9: كيف تدعم التجزئة والتوقيعات المصادقة"),
     ],
     environment: l(
       "The companion RBAC simulator in a browser (display only). No real accounts, roles or systems are involved. All matrix changes shown are simulated.",

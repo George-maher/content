@@ -31,8 +31,8 @@ export const s17: Session = {
       "الجلسة 16، الاستجابة للحوادث: كيف يندمج التحقيق الجنائي في دورة الحوادث وكيف تُحفظ الأدلة أثناء الاحتواء.",
     ),
     l(
-      "Session 12, Cryptography: how hash functions produce fixed-length fingerprints used to verify integrity.",
-      "الجلسة 12، التشفير: كيف تُنتج دوال التجزئة بصمات ثابتة الطول تُستخدم للتحقق من السلامة.",
+      "Session 9, Cryptography: how hash functions produce fixed-length fingerprints used to verify integrity.",
+      "الجلسة 9، التشفير: كيف تُنتج دوال التجزئة بصمات ثابتة الطول تُستخدم للتحقق من السلامة.",
     ),
     l(
       "A legal and ethical mindset: collect evidence only from systems you are authorised to investigate, and preserve it exactly as found.",
@@ -343,7 +343,7 @@ export const s17: Session = {
       l("Explain why hashing proves evidence was not altered", "شرح سبب إثبات التجزئة عدم تعديل الأدلة"),
     ],
     prerequisites: [
-      l("Session 12: how hash functions produce fixed-length fingerprints", "الجلسة 12: كيف تُنتج دوال التجزئة بصمات ثابتة الطول"),
+      l("Session 9: how hash functions produce fixed-length fingerprints", "الجلسة 9: كيف تُنتج دوال التجزئة بصمات ثابتة الطول"),
       l("Session 16: how evidence is preserved during incident response", "الجلسة 16: كيف تُحفظ الأدلة أثناء الاستجابة للحوادث"),
     ],
     environment: l(

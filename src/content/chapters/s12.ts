@@ -1,7 +1,7 @@
 import { l, type Session } from "../types";
 
 export const s12: Session = {
-  id: 12,
+  id: 9,
   phase: 4,
   schemaVersion: 2,
   minutes: 90,
@@ -23,8 +23,8 @@ export const s12: Session = {
   ),
   prerequisites: [
     l(
-      "Session 11, Web Application Security: how HTTP and TLS protect web traffic.",
-      "الجلسة 11، أمن تطبيقات الويب: كيف يحمي HTTP وTLS حركة الويب.",
+      "Session 12, Web Application Security: how HTTP and TLS protect web traffic.",
+      "الجلسة 12، أمن تطبيقات الويب: كيف يحمي HTTP وTLS حركة الويب.",
     ),
     l(
       "Basic arithmetic comfort; no prior cryptography or number theory is assumed.",
@@ -305,7 +305,7 @@ export const s12: Session = {
       l("Design a secure password-storage approach", "تصميم نهج لتخزين كلمات مرور آمن"),
     ],
     prerequisites: [
-      l("Session 11: how TLS and web security use cryptography", "الجلسة 11: كيف يستخدم TLS وأمن الويب التشفير"),
+      l("Session 12: how TLS and web security use cryptography", "الجلسة 12: كيف يستخدم TLS وأمن الويب التشفير"),
       l("Basic arithmetic comfort; no number theory required", "راحة أساسية مع الحساب؛ ولا حاجة لنظرية الأعداد"),
     ],
     environment: l(

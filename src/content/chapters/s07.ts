@@ -1,7 +1,7 @@
 import { l, type Session } from "../types";
 
 export const s07: Session = {
-  id: 7,
+  id: 6,
   phase: 3,
   schemaVersion: 2,
   minutes: 90,
@@ -106,7 +106,7 @@ export const s07: Session = {
       h: l("3. Network devices: switches, routers and access points", "3. أجهزة الشبكة: المحولات والموجهات ونقاط الوصول"),
       p: [
         l("Each device operates at a layer and has a distinct security role. A switch works at Layer 2: it connects devices in one LAN and forwards frames by MAC address, and can be configured with VLANs and port security to control which devices communicate. A router works at Layer 3: it connects different networks and forwards packets by IP address, and is often the first point where traffic filtering (access control lists) is applied.", "يعمل كل جهاز في طبقة وله دور أمني مميز. المحوّل يعمل في الطبقة 2: يربط الأجهزة في شبكة محلية واحدة ويمرر الإطارات بحسب عنوان MAC، ويمكن إعداده بـ VLAN وأمان المنافذ للتحكم في الأجهزة التي تتواصل. والموجّه يعمل في الطبقة 3: يربط شبكات مختلفة ويمرر الحزم بحسب عنوان IP، وغالبًا هو أول نقطة يُطبّق فيها ترشيح الحركة (قوائم التحكم بالوصول)."),
-        l("An access point provides Wi-Fi and must use WPA2 or WPA3 with strong keys and updated firmware. A modem connects a network to the Internet line provided by an ISP. A firewall (covered in Session 9) sits at boundaries and decides what traffic is allowed. Understanding which device does what helps you reason about where traffic can be controlled and where an attacker might target.", "توفّر نقطة الوصول الواي فاي ويجب أن تستخدم WPA2 أو WPA3 بمفاتيح قوية وبرمجية ثابتة محدّثة. ويربط المودم الشبكة بخط الإنترنت الذي يوفره مزوّد الخدمة. ويقع الجدار الناري (المُغطّى في الجلسة 9) عند الحدود ويقرر الحركة المسموح بها. ويساعد فهم دور كل جهاز على التفكير في أماكن التحكم في الحركة وأماكن استهداف المهاجم لها."),
+        l("An access point provides Wi-Fi and must use WPA2 or WPA3 with strong keys and updated firmware. A modem connects a network to the Internet line provided by an ISP. A firewall (covered in Session 8) sits at boundaries and decides what traffic is allowed. Understanding which device does what helps you reason about where traffic can be controlled and where an attacker might target.", "توفّر نقطة الوصول الواي فاي ويجب أن تستخدم WPA2 أو WPA3 بمفاتيح قوية وبرمجية ثابتة محدّثة. ويربط المودم الشبكة بخط الإنترنت الذي يوفره مزوّد الخدمة. ويقع الجدار الناري (المُغطّى في الجلسة 8) عند الحدود ويقرر الحركة المسموح بها. ويساعد فهم دور كل جهاز على التفكير في أماكن التحكم في الحركة وأماكن استهداف المهاجم لها."),
       ],
       bullets: [
         l("Switch (Layer 2): connects devices in one LAN; forwards frames by MAC address; supports VLANs and port security.", "المحوّل (الطبقة 2): يربط الأجهزة في شبكة محلية واحدة؛ ويمرر الإطارات بحسب MAC؛ ويدعم VLAN وأمان المنافذ."),

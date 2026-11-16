@@ -17,5 +17,6 @@ export const STORAGE_KEYS = {
   progress: "csf.progress.v2",
   legacyProgress: "csf.progress.v1",
   migrationNotice: "csf.progress.migration",
+  reorder: "csf.progress.reorder",
   lang: "csf.lang",
 } as const;
